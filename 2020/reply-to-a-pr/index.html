@@ -1,0 +1,619 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=&#34;light&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/touchicon.png">
+  <link rel="icon" type="image/png" href="/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="the personal blog of Ender">
+  <meta name="author" content="Ender">
+  <meta name="keywords" content="brian,ender,chen,blog,personal,front,back,coder,oier,programmer">
+  <title>对一个Pull Request的回复 | Ender&#39;s Blog</title>
+
+  <script src="https://cdn.jsdelivr.net/npm/@waline/client/dist/Waline.min.js"></script>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.4.0/styles/tomorrow-night-bright.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"code004accepted.github.io","root":"/","version":"1.8.7","typing":{"enable":true,"typeSpeed":100,"cursorChar":"|","loop":true},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":"§"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"onlypost":false},"web_analytics":{"enable":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"bf8UbRKxg2BkW2voBbHTiwJC-MdYXbMMI","app_key":"mhx590dbWwLImjB0ARU4PCpL","server_url":null}}};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.3.0"><link rel="alternate" href="/atom.xml" title="Ender's Blog" type="application/atom+xml">
+</head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>Ender's Blog</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/msg/">
+                <i class="iconfont icon-comment"></i>
+                留言
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友链
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" target="_blank" rel="noopener" href="https://travellings.now.sh/">
+                <i class="iconfont icon-books"></i>
+                开往
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" href="javascript:">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('https://cdn.jsdelivr.net/gh/code004Accepted/blog-files-cdn/bkg.jpg') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="对一个Pull Request的回复">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-author" aria-hidden="true"></i>
+      Ender
+    </span>
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2020-02-20 06:49" pubdate>
+        02/20/2020 06:49早上
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      3.7k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      49
+       分钟
+    </span>
+  
+
+  
+  
+    
+      <!-- LeanCloud 统计文章PV -->
+      <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+        <i class="iconfont icon-eye" aria-hidden="true"></i>
+        <span id="leancloud-page-views"></span>
+      </span>
+    
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">对一个Pull Request的回复</h1>
+            
+              <p class="note note-info">
+                
+                  本文最后更新于：1 分钟前
+                
+              </p>
+            
+            <div class="markdown-body">
+              <p>近几天不知道为什么一直感觉情绪比较失调，昨天看到这个去年八月份去插了一句嘴的PR，气愤感油然而生。由于Repo Owner好像已经锁帖，故在此回复：</p>
+<p>PR链接：<a target="_blank" rel="noopener" href="https://github.com/getlantern/lantern/pull/8347">https://github.com/getlantern/lantern/pull/8347</a></p>
+<p>回复对象：<a target="_blank" rel="noopener" href="https://github.com/han814992037">@han814992037</a></p>
+<a id="more"></a>
+<p>首先，这位仁兄和其他几位一起在Issues里面骂人，随后开发者关闭了Issues，然后我找Lantern的错误时发现他们又在PR里面at开发者来骂。</p>
+<p>好吧，说老实话，我TM就不应该进这个PR。我进来就回了一句话（因为他骂人是用<code>f*ck</code>来的，我一开始以为他不是中国人）：</p>
+<figure class="highlight applescript"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs applescript">Excuse <span class="hljs-keyword">me</span>, dear sirs/madams,<br>Issues <span class="hljs-keyword">is</span> <span class="hljs-keyword">not</span> <span class="hljs-keyword">for</span> you <span class="hljs-keyword">to</span> <span class="hljs-built_in">say</span> such bad <span class="hljs-built_in">words</span>.<br></code></pre></div></td></tr></table></figure>
+<p>（好吧我写错了是PR）</p>
+<p>随后…</p>
+<figure class="highlight erlang-repl"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs erlang-repl">FUCK your mom!!!<br>money-back!!!!!!!!<br>FUCK your mom!!!<br>money-back!!!!!!!!FUCK your mom!!!<br>money-back!!!!!!!!FUCK your mom!!!<br>money-back!!!!!!!!FUCK your mom!!!<br>money-back!!!!!!!!<br></code></pre></div></td></tr></table></figure>
+<p>好的，我能理解你的心情，Lantern付钱然后连不上并不是一个typical的问题，因为就我所知，VxN付款后连不上的不计其数。就好比拿你的电脑去连接一个一直在变的服务器，你的网络的变化和蓝灯服务的变化还有zf因素都可能导致效果的180°大转变。况且，你F*CK找我干什么，找开发者啊…</p>
+<p>于是我继续回复：</p>
+<figure class="highlight pgsql"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs pgsql">Dear sir, I sincerely understand your anger.<br>I <span class="hljs-keyword">also</span> know that Lantern <span class="hljs-keyword">is</span> somehow cheating peopl<span class="hljs-string">e&#x27;s money.</span><br><span class="hljs-string">But please note that Github Issues isn&#x27;</span>t a place <span class="hljs-keyword">for</span> you <span class="hljs-keyword">to</span> express your feelings through bad words.<br><span class="hljs-keyword">If</span> you really want <span class="hljs-keyword">to</span> say bad words, please send emails <span class="hljs-keyword">or</span> private messages <span class="hljs-keyword">to</span> the developers.<br>Thanks <span class="hljs-keyword">for</span> giving me a chance <span class="hljs-keyword">to</span> speak. Hope <span class="hljs-keyword">no</span> more bad words will appear here.<br><br>PS: Would you mind learning <span class="hljs-keyword">some</span> Markdown skills <span class="hljs-keyword">before</span> fucking me???<br>Go here <span class="hljs-keyword">to</span> <span class="hljs-keyword">read</span> more<br></code></pre></div></td></tr></table></figure>
+<p>（好吧我又把PR写成了Issues…）</p>
+<p>然后另外一个人又跳出来：</p>
+<figure class="highlight plain"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs plain">我们作为顾客，给了你信任，反应了问题，但是你们呢？有任何反馈吗？我也是开发者，我自己的顾客有问题的时候，也会第一时间反馈，但是你们长时间累计的不反馈，不理会你认为大家发火不合理？我是英文烂，但是又怎样呢？顾客需要练好自己的英文才能反馈？我用英文跟你沟通还不是因为以为你是英文开发者？所以我为你的“方便”，你却没有看到问题本身，我们需要的是连接正常稳定的VPN，跟你骂有意义？<br></code></pre></div></td></tr></table></figure>
+<p>好的，我再重申一下，我TM真的不是开发者…</p>
+<p>遂回复：</p>
+<figure class="highlight stata"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs stata">首先重申一下，我与这个项目没有任何关系。我不是他们的开发者，也不是顾客。我只是今天晚上浏览VPN的时候看到了而已<br><br>说实话，作为一个GA开发者，我认为您的语言有些不合理。<br><br>您的顾客？我只知道我的所有项目全部是免费的，其中大部分还是开源的；<br>VPN不是说好就能好的，它不像一个游戏或者一个工具程序，不是说有Bug就能修的。甚至有可能你这里不行，他那里可以。在这种情况下，根据开发者自愿遵守的相关规定，他完全可以无视你的Issue与<span class="hljs-keyword">PR</span><br>我认为Latern的开发者也不至于那么猥琐。至少，他们完全可以把这个<span class="hljs-keyword">PR</span>给删掉或者关闭<span class="hljs-keyword">PR</span>板块。他们没有这么做，说明他们并没有那么坏。<br>您们可以发火，您们可以骂人，但请不要玷污了Github。这是一个开发者讨论交流的社区，不是一个开发者和顾客到处骂来骂去的社区。<br>您认为您用英文与我沟通是为了我的”方便“，我可以说我开始的时候和您沟通是为了广大Github用户的”方便“，而且我现在用中文与您共同也是为了您的”方便“，很明显在你代码打多了的时候，英文比中文输的更快。<br>关于您的”顾客需要练好英语才能反馈“观点我表示极不赞同。我的几个项目支持所有语言反馈，我还有一次收到一份日语的BUG报告，我还不是丢到Google <span class="hljs-keyword">Translate</span>里面看，然后再回信，翻译成日语，发给他<br>您如果需要正常稳定的VPN，只能说您智商（或者搜索技能）不过关。很明显Lantern比赛风差得多，一直以来都是如此（至少我用的一直是如此，当然我并没有购买<span class="hljs-keyword">PRO</span>），还有FreeVPN，一直以来Google Youtube Twitter从来没卡过，也是1s连上，永久免费。<br>顺便问一句，您平常开发使用的是哪种语言？我不太相信有英语不好能编好代码的语言<br>以上，我不是对您不尊重，而是您需要更好地弄清楚我和这个项目没有关系。还有，您的措辞真的让我觉得开发者，或者说，程序员这个称谓收到了玷污。<br></code></pre></div></td></tr></table></figure>
+<p>然后前面那个人又出来了：</p>
+<figure class="highlight lasso"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs lasso"><span class="hljs-number">1.</span>你是干啥的和我俩没有半毛钱关系，你是联合国秘书长，都与我无关！你要不来这里放屁，我不屑于和你这种傻屌浪费时间。<br><span class="hljs-number">2.</span>我们信任，是因为已经用过一年了，人家有官方网站(发表意见，都不事先考察一下吗？！)<br><span class="hljs-number">3.</span>我们是花钱买的服务，你和我们扯自己破解？什么狗屁逻辑（你这种逻辑能力，怎么混进开发行业的？！）<br><span class="hljs-number">4.</span>我们用什么VPN有自己的选择能力，轮不到你来指手画脚！你所列举的稳定性，速度，相差甚远！<br><span class="hljs-number">5.</span>你要举报我骂人！？好！我草你妈！疯狂的草你妈！你个狗杂种！你妈死了！我操死的！<br><span class="hljs-number">6.</span>你刚才说，如果技术够能够直接破解PRO，怎么这会就不是说好就能好的！？有可能这里好，那里不好？这你还有点说到点了，之所以来这里，就是要看看都有那些坐标，是不能用的。<br><span class="hljs-number">7.</span>你认为的！？那仅仅是你认为的！我们没有讨论他坏与不坏的问题！我们骂他是因为两个月以来一直默不作声。<br><span class="hljs-number">8.</span>玷污Github！？高雅不是装的，孙子才是装的！你就是那种装孙子的东西！（是非因果，没搞清楚，就来装圣人，假装劝架！你这种是要遭雷劈的！Lantern有报告问题的，在座的所有人，都不止一次的报告过问题，但是，一律石沉大海。遂来此<span class="hljs-params">...</span><span class="hljs-params">...</span>）,所以，我断定，你连最基本揣摩用户行为的能力都没有，就直接下断言，你这么垃圾的逻辑能力和分析能力，是开发人员！？走后门的吧！<br><span class="hljs-number">9.</span>本地的中国人，英文打的再多，也不能比中文输入快，这是常识！你个傻逼！<br><span class="hljs-number">10.</span>仔细看看那哥们的意思，他可没说顾客需要练好英语，才能反馈，你说你是中国人！？杂交的吧！！！这你都能理解错！忘本了吧你！！！<br><span class="hljs-number">11.</span>你一个用赛风，FreeVPN的，大家不是不知道，你说稳定！？我只能呵呵了<span class="hljs-params">...</span>..睁眼说瞎话，就是你做人的根本吧！<br><span class="hljs-number">12.</span>你说你是开发者，不知道开发最重要的是数学吗！！！？？？英语不好就编不好代码？你是从业人员吗？<br><span class="hljs-number">13.</span>我觉得你从始至终强调自己是开发者，才是对整个行业的玷污！你这逻辑能力，真的不像是开发人员！<br><br>一个刚刚说完自己取消订阅，还出来，扯这么多的狗杂种，出尔反尔如此之快！？你有脸说自己是中国人！？<br><br>最后你不是要去举报我吗！？我担心你没有证据！所以给你点证据，请看以下：<br><br>我草你妈！Fuck your mom ！ 我草你妈！Fuck your mom ！ 我草你妈！Fuck your mom ！ 我草你妈！Fuck your mom ！ Shot <span class="hljs-keyword">to</span> your mom<span class="hljs-string">&#x27;s face!</span><br></code></pre></div></td></tr></table></figure>
+<p>现在进行官方的回复：</p>
+<ol>
+<li>之前我对您是一条一条回复的，如果您还要继续，也请按照我的序号来；</li>
+<li>十分抱歉，我跟不屑与您这种啥都不懂的浪费时间。哦另外，如果我是联合国秘书长，您可能死哪了都不知道；</li>
+<li>我随随便便都可以搭个网站，再绑定一个低价域名，就比如这个blog，除了域名花了几个钱以外，我一分钱都没花；</li>
+<li>我谈到破解PRO版本就是因为您之前质问我：“有本事你破解啊，反正老子是花了钱的”，相关评论已被删除所以证据可能找不到；</li>
+<li>我只是在向您推荐，并没有“指手画脚”呢。另外，VxN这个东西，或许确实我连接时比较快，您连接的时候就慢了，这也不是我的锅，就当您RP不好呗；</li>
+<li>谢谢您提供充足的证据呢；</li>
+<li>VxN很明显会有很多IP会不能用，这点可以说是我之前知识上的某种匮乏。总之，一个明摆着的事实就是，一个IP被zf操作封了以后，基本是不可能解封的，所以很明显IP需要不断更新，而之所以您来骂人不就是因为已有的IP都不能用了吗？我前面说到了，网络环境和网速也是重要的因素；</li>
+<li>好吧我不太清楚您在说什么，反正我认为我在回复时已经完全搞懂了您的问题。毕竟，我可以告诉您的是，您完全没有分析能力，您之所以骂人是因为您遇到IP无法连接的情况并进行了反馈。然而，Lantern开发者在两个月内都没有对您进行反馈，所以您变为一种硬性、强烈而极端不合理的要求：<code>money back!</code>；</li>
+<li>我可以告诉您，您的行为就是在玷污Github，同时还滥用了PR板块的功能。我不太能理解“装孙子”的意思，或许是因为我很少骂人；</li>
+<li>对不起，我英文打字就是比中文快。看您英语的能力，加上您如此的叙述，我其实非常吃惊：您难道是用易语言开发的吗？英语不好还能当开发者？抱歉我无法理解您的意思；</li>
+<li>好吧，我理解错了，您满意了吧，回复的时候有一点偏激。不过话说回来，您的回复里类似的语言多到我都数不清呢；</li>
+<li>我用免费的VxN确实够了，速度也够快，流量我也不需要太多。话说您需要这么多流量和这么快的网速干什么？普通的查资料都够了，只是不能看Youtube的视频而已（其实也不确定，有些时候Youtube也可以看）。另外，实在不行用IDM下载Youtube的视频离线看也不是不可以啊，只是需要多等待一会而已；</li>
+<li>抱歉我不是从业人员，不过我或许比您更清楚数学基本功的重要性，但是看您说话没调理的样子，就问您数学好吗？另外真正能锻炼思维能力的是数学竞赛、物理学竞赛等高中竞赛，说老实话课内科目都不太能锻炼思维能力。上面已经讲过英语的重要性了，不再过多叙述；</li>
+<li>首先，我并没有自始自终强调我是开发者。其次，开发者真的需要时时刻刻使用VxN吗？如果要Google，直接用chrome的“谷歌访问助手”插件就可以完美解决。我估计您是要办公休闲时候看Youtube视频吧，那请问您英语不好又怎么能理解呢？另外，Lantern如此昂贵的服务，远不如自搭服务器SSR来的快、来的便宜。由此可以很明显的看出您开发能力和语言能力都不过关。</li>
+</ol>
+<hr>
+<p>一句话：个人认为您跟那些在其他国家公共区域大喊CNMB的中国留学生没什么区别。</p>
+<p>您可以认为我是“狗杂种”，反正我是实在搞不懂您。毕竟，下载使用甚至还购买了Lantern这样VxN的，可以认为每天都在违法，从您的叙述中您“试用了一段时间”，然后还购买了至少两个月的VxN，说句不好听的，您可能都已经被公安机关记录在案了。像您这种不知廉耻的人，自己作为一个天天违法甚至犯罪的公民，还好意思指责他人“没脸是中国人”，我认为，或许您才没资格做中国人吧！尊重血统的，魔法世界只有Slytherin，现实世界中肯定也少之又少，而您名列其中。祝好！</p>
+<hr>
+<p>哦对了，无意中看到您之前的评论：</p>
+<figure class="highlight awk"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs awk">&gt; 一直都没稳定过<br><br>都别用它了 ，这帮狗比，跑路了，操他们妈的，一起https:<span class="hljs-regexp">//</span>twitter.com<span class="hljs-regexp">/MeiGuoCanKao/</span>status/<span class="hljs-number">1143909860515483648</span> 去twitter上，骂这帮狗杂种！！！团结起来，争取让媒体，都知道，那样，还有退钱的可能！！！<br>https:<span class="hljs-regexp">//</span>twitter.com<span class="hljs-regexp">/MeiGuoCanKao/</span>status/<span class="hljs-number">1143909860515483648</span><br>https:<span class="hljs-regexp">//</span>twitter.com<span class="hljs-regexp">/MeiGuoCanKao/</span>status/<span class="hljs-number">1143909860515483648</span><br>https:<span class="hljs-regexp">//</span>twitter.com<span class="hljs-regexp">/MeiGuoCanKao/</span>status/<span class="hljs-number">1143909860515483648</span><br></code></pre></div></td></tr></table></figure>
+<p>终于懂得了您存在的意义。您用来欺骗和诱惑他人的方法很简单：非法利用国外的社区来对国内的一个人或一个企业进行打击，并主张“团结”。我之前写的没错，您就是大喊CNMB的，利用非法手段来让国外的媒体和个人以为某个东西是引起了公愤的。但是，这无疑是对国外社区的一种污染。</p>
+<p>我不说多了，毕竟我还是比较怕国内媒体和舆论的围攻的。您就自重吧，最好也别把我丢到国外媒体上去骂。毕竟就国外而言我的关系还是比您的稳定得多。</p>
+<p>另外，此人在此PR中还有许许多多的言论，他自己都说过“免费的自由门都能用”，自相矛盾，我也真的无语了… 还欢迎各位在这个PR里找这样的人，找到了麻烦回复一下。</p>
+<p>我也就不喷那么多了，当今时代人人都有事做，再一次祝好！</p>
+<p>附赠截图：</p>
+<p><img src="/reply-to-a-pr/screenshot.png" srcset="/img/loading.gif" alt="Full Page Screenshot"></p>
+<p>下面是本文中提到和部分未提到的重点内容截图：</p>
+<p><img src="/reply-to-a-pr/proof1.png" srcset="/img/loading.gif" alt="Proof 1"></p>
+<p><img src="/reply-to-a-pr/proof2.png" srcset="/img/loading.gif" alt="Proof 2"></p>
+<p><img src="/reply-to-a-pr/proof3.png" srcset="/img/loading.gif" alt="Proof 3"></p>
+<p><img src="/reply-to-a-pr/proof4.png" srcset="/img/loading.gif" alt="Proof 4"></p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/%E9%9A%8F%E8%AE%B0/">随记</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/%E9%9D%9E%E8%AF%B7%E5%8B%BF%E5%85%A5/">非请勿入</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-nc-nd/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-NC-ND 4.0 协议</a> ，转载请注明出处！</p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2020/how-to-crack-wjx/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">如何在问卷星考试中作弊</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2020/about-the-10-points/">
+                        <span class="hidden-mobile">about-the-10-points</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments">
+                
+                  <div id="waline"></div>
+  <script type="text/javascript">
+    Fluid.utils.waitElementVisible('waline', function() {
+        new Waline({
+          el: '#waline',
+          placeholder: "🚀评论支持Markdown\n🚯反垃圾系统已启动，请注意言辞\n📨输入E-Mail地址或注册账号以获得回复提醒\n🙋‍♂️前往留言区举报违规评论，举报无惊喜",
+          path: location.pathname,
+          avatar: 'identicon',
+          serverURL: 'https://ender-blog.vercel.app',
+          requiredFields: ['nick']
+        });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments.
+  </noscript>
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+    Copyright 2021 <a href="https://github.com/code004Accepted" target="_blank" rel="nofollow noopener">code004Accepted</a>. <a href="/copyright/" target="_blank">All Rights Reserved</a>. 
+  </div>
+  
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- LeanCloud 统计PV -->
+        <span id="leancloud-site-pv-container" style="display: none">
+            总访问量 
+            <span id="leancloud-site-pv"></span>
+             |
+          </span>
+      
+      
+        <!-- LeanCloud 统计UV -->
+        <span id="leancloud-site-uv-container" style="display: none">
+            总访客数 
+            <span id="leancloud-site-uv"></span>
+             
+          </span>
+      
+
+    
+  </div>
+
+
+  
+
+  
+</footer>
+
+<!-- SCRIPTS -->
+
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.0/dist/tocbot.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.0/anchor.min.js" ></script>
+
+
+
+  <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js" ></script>
+
+
+
+
+  <script defer src="/js/leancloud.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    (function () {
+      var path = "/local-search.xml";
+      var inputArea = document.querySelector("#local-search-input");
+      inputArea.onclick = function () {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+        this.onclick = null
+      }
+    })()
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+
+</body>
+</html>

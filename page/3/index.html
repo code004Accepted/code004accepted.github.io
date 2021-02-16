@@ -1,0 +1,992 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=&#34;light&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/touchicon.png">
+  <link rel="icon" type="image/png" href="/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="the personal blog of Ender">
+  <meta name="author" content="Ender">
+  <meta name="keywords" content="brian,ender,chen,blog,personal,front,back,coder,oier,programmer">
+  <title>Ender&#39;s Blog</title>
+
+  <script src="https://cdn.jsdelivr.net/npm/@waline/client/dist/Waline.min.js"></script>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"code004accepted.github.io","root":"/","version":"1.8.7","typing":{"enable":true,"typeSpeed":100,"cursorChar":"|","loop":true},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":"§"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"onlypost":false},"web_analytics":{"enable":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"bf8UbRKxg2BkW2voBbHTiwJC-MdYXbMMI","app_key":"mhx590dbWwLImjB0ARU4PCpL","server_url":null}}};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.3.0"><link rel="alternate" href="/atom.xml" title="Ender's Blog" type="application/atom+xml">
+</head>
+
+
+<body>
+  <header style="height: 100vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>Ender's Blog</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/msg/">
+                <i class="iconfont icon-comment"></i>
+                留言
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友链
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" target="_blank" rel="noopener" href="https://travellings.now.sh/">
+                <i class="iconfont icon-books"></i>
+                开往
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" href="javascript:">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('https://cdn.jsdelivr.net/gh/code004Accepted/blog-files-cdn/bkg.jpg') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="Pushing to the limit">
+              
+            </span>
+
+            
+          </div>
+
+          
+            <div class="scroll-down-bar">
+              <i class="iconfont icon-arrowdown"></i>
+            </div>
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      <div class="container nopadding-x-md">
+        <div class="py-5" id="board"
+          style=margin-top:0>
+          
+          <div class="container">
+            <div class="row">
+              <div class="col-12 col-md-10 m-auto">
+                
+
+
+  <div class="row mx-auto index-card">
+    
+    
+      <div class="col-12 col-md-4 m-auto index-img">
+        <a href="/2019/about-the-music-after-school/" target="_self">
+          <img src="https://cdn.jsdelivr.net/gh/code004Accepted/blog-files-cdn/bkg.jpg" srcset="/img/loading.gif" alt="关于放学的铃声">
+        </a>
+      </div>
+    
+    <article class="col-12 col-md-8 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2019/about-the-music-after-school/">关于放学的铃声</a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2019/about-the-music-after-school/">
+          
+          
+            
+          
+          今天已经是开学的第4天了，除了1号以外，我们已经上了三天晚自习了（初三学生放学时间晚大概1.5小时，这1.5小时称作晚自习）
+初一初二放学的铃声与平常下课的铃声没什么区别，就是平和温柔的音乐
+初三的晚自习放学铃声可完全不一样
+经过大概10mins的搜寻，我找到了这段好听的音乐：
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2019-09-04 23:00" pubdate>
+              2019-09-04
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/%E9%9A%8F%E8%AE%B0/">随记</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/%E5%AD%A6%E6%A0%A1/">学校</a>
+            
+              <a href="/tags/%E9%9F%B3%E4%B9%90/">音乐</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+      <div class="col-12 col-md-4 m-auto index-img">
+        <a href="/2019/about-wngmsog/" target="_self">
+          <img src="https://cdn.jsdelivr.net/gh/code004Accepted/blog-files-cdn/bkg.jpg" srcset="/img/loading.gif" alt="关于WNGMSOG">
+        </a>
+      </div>
+    
+    <article class="col-12 col-md-8 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2019/about-wngmsog/">关于WNGMSOG</a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2019/about-wngmsog/">
+          
+          
+            
+          
+          额？WNGMSOG？这是什么东东？
+Wuhan No.2 Guangya Middle School Offclass Guide
+武汉二中广雅中学课后指南（其实课后是指放学后，不过没必要在意这些细节233）
+课后指南是什么东东呢？
+想想，以后在您的所有设备—所有—上都有一份从二中广雅出来到你家里的… 就叫做导航吧
+什么？导航？
+没错，功能可多了！
+（本文其实可以说是个广告qwq）
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2019-08-27 21:39" pubdate>
+              2019-08-27
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/%E9%A1%B9%E7%9B%AE/">项目</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/%E5%AD%A6%E6%A0%A1/">学校</a>
+            
+              <a href="/tags/GC-Server/">GC Server</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+      <div class="col-12 col-md-4 m-auto index-img">
+        <a href="/2019/how-to-build-a-hexo-blog/" target="_self">
+          <img src="https://cdn.jsdelivr.net/gh/code004Accepted/blog-files-cdn/bkg.jpg" srcset="/img/loading.gif" alt="Hexo博客搭建—从入门到精通">
+        </a>
+      </div>
+    
+    <article class="col-12 col-md-8 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2019/how-to-build-a-hexo-blog/">Hexo博客搭建—从入门到精通</a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2019/how-to-build-a-hexo-blog/">
+          
+          
+            
+          
+          注：本文部分内容来自ouuan的博客，原文地址
+
+2020.02.13更新：关于Coding再次更新，已更改/增加相应内容。
+
+我一直以来认为，要弄一个自己的博客或者网站，必须到某些什么“建站工具”里购买建站套装，再自己买一个域名
+这样算下来，一年至少得两三百RMB
+而且，域名什么的配置繁杂，非常麻烦
+所以，一直以来我都是用的CSDN/博客园建的博客，想想SEO也做的好（SEO好就意味着你写的东西
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2019-08-25 20:59" pubdate>
+              2019-08-25
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/%E9%9A%8F%E8%AE%B0/">随记</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/%E6%90%AD%E5%BB%BA/">搭建</a>
+            
+              <a href="/tags/%E5%8D%9A%E5%AE%A2/">博客</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+      <div class="col-12 col-md-4 m-auto index-img">
+        <a href="/2019/spiderman-leave-mcu/" target="_self">
+          <img src="https://cdn.jsdelivr.net/gh/code004Accepted/blog-files-cdn/bkg.jpg" srcset="/img/loading.gif" alt="蜘蛛侠将离开漫威宇宙">
+        </a>
+      </div>
+    
+    <article class="col-12 col-md-8 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2019/spiderman-leave-mcu/">蜘蛛侠将离开漫威宇宙</a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2019/spiderman-leave-mcu/">
+          
+          
+            
+          
+          今日下午传来一个震惊的消息… 蜘蛛侠由于索尼和迪士尼的争执将离开漫威宇宙
+起因是这样的，原来对于蜘蛛侠的电影，一部分由迪士尼拿全部利润，另一部分迪士尼拿1%的利润，99%的利润归索尼
+结果，迪士尼不满意，想要在“另一部分”电影中也拿50%利润，索尼不干了，就把蜘蛛侠给收回来了
+登上Twitter一看，一片哀嚎之声，一个投票（24:00截止的），我看的时候已经是23:15左右了，问蜘蛛侠属于哪里
+1
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2019-08-21 23:24" pubdate>
+              2019-08-21
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/%E9%9A%8F%E8%AE%B0/">随记</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/%E5%A8%B1%E4%B9%90/">娱乐</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+      <div class="col-12 col-md-4 m-auto index-img">
+        <a href="/2019/hack-noi-website/" target="_self">
+          <img src="https://cdn.jsdelivr.net/gh/code004Accepted/blog-files-cdn/bkg.jpg" srcset="/img/loading.gif" alt="关于《CCF关于暂停NOIP竞赛的公告》">
+        </a>
+      </div>
+    
+    <article class="col-12 col-md-8 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2019/hack-noi-website/">关于《CCF关于暂停NOIP竞赛的公告》</a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2019/hack-noi-website/">
+          
+          
+            
+          
+          本文仅供娱乐，请不要断章取义
+查看后文前请务必保证您同意下面的协议：
+12341. 如果我是NOI/CCF相关工作人员，我保证我不会查看本文的任何内容，并且我保证我不会以任何方式告诉我的同事直接或间接地查看本文，我已知晓本文作者（即博主）不承担本文所造成的任何后果与责任；2. 如果我不是NOI/CCF相关工作人员，我保证我不会以任何方式直接或间接地告知NOI/CCF及相关组织来查看本站/本博文；3
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2019-08-21 18:01" pubdate>
+              2019-08-21
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/%E9%9A%8F%E8%AE%B0/">随记</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/%E5%A8%B1%E4%B9%90/">娱乐</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+      <div class="col-12 col-md-4 m-auto index-img">
+        <a href="/2019/a-god-post-on-lgoj/" target="_self">
+          <img src="https://cdn.jsdelivr.net/gh/code004Accepted/blog-files-cdn/bkg.jpg" srcset="/img/loading.gif" alt="LGOJ上的神贴——《关于平衡树》">
+        </a>
+      </div>
+    
+    <article class="col-12 col-md-8 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2019/a-god-post-on-lgoj/">LGOJ上的神贴——《关于平衡树》</a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2019/a-god-post-on-lgoj/">
+          
+          
+            
+          
+          原帖地址：https://www.luogu.org/discuss/show/137272
+可以通过 https://www.luogu.org/discuss/show/137272?page={pagenum} 来直接前往第{pagenum}页
+截图如下（1~67页），传到了路过图床（sm.ms一次只能上传10张qwq），加载可能很慢，可能很卡，请谅解qwq
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2019-08-20 21:05" pubdate>
+              2019-08-20
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/%E9%9A%8F%E8%AE%B0/">随记</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/%E5%A8%B1%E4%B9%90/">娱乐</a>
+            
+              <a href="/tags/%E7%BA%AA%E5%BF%B5/">纪念</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+      <div class="col-12 col-md-4 m-auto index-img">
+        <a href="/2019/dalao-all-went-to-zhong-shan-ji-nian-high-school/" target="_self">
+          <img src="https://cdn.jsdelivr.net/gh/code004Accepted/blog-files-cdn/bkg.jpg" srcset="/img/loading.gif" alt="dalao们都去纪中了，就我一个蒟蒻留了下来">
+        </a>
+      </div>
+    
+    <article class="col-12 col-md-8 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2019/dalao-all-went-to-zhong-shan-ji-nian-high-school/">dalao们都去纪中了，就我一个蒟蒻留了下来</a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2019/dalao-all-went-to-zhong-shan-ji-nian-high-school/">
+          
+          
+            
+          
+          此文为重要机密信息，除博主外禁止访问
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2019-08-19 21:51" pubdate>
+              2019-08-19
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/%E9%9A%8F%E8%AE%B0/">随记</a>
+            
+          </div>
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+      <div class="col-12 col-md-4 m-auto index-img">
+        <a href="/2019/notice-about-junior-grade-9/" target="_self">
+          <img src="https://cdn.jsdelivr.net/gh/code004Accepted/blog-files-cdn/bkg.jpg" srcset="/img/loading.gif" alt="关于进入九年级后此博客处理办法的公告">
+        </a>
+      </div>
+    
+    <article class="col-12 col-md-8 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2019/notice-about-junior-grade-9/">关于进入九年级后此博客处理办法的公告</a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2019/notice-about-junior-grade-9/">
+          
+          
+            
+          
+          众所周知，在2019年8月23日（提前开学），本人将正式成为一名初三学生。由于 元月调考/四月调考/中考 这三场考试对每一位考生都意义重大，影响未来命运，现特别给出以下公告：
+关于进入九年级后此博客处理办法的公告2019.08.17 01:18:24 公告作者：code004/code004Accepted
+因为我即将进入学习紧张的初三，故此博客很可能没有时间来更新。之前的一周2/3更，现更改为一
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2019-08-17 01:18" pubdate>
+              2019-08-17
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/%E5%85%AC%E5%91%8A/">公告</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/%E5%AD%A6%E6%A0%A1/">学校</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+      <div class="col-12 col-md-4 m-auto index-img">
+        <a href="/2019/some-softwares-i-like/" target="_self">
+          <img src="https://cdn.jsdelivr.net/gh/code004Accepted/blog-files-cdn/bkg.jpg" srcset="/img/loading.gif" alt="分享一下自己平常喜欢用的软件">
+        </a>
+      </div>
+    
+    <article class="col-12 col-md-8 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2019/some-softwares-i-like/">分享一下自己平常喜欢用的软件</a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2019/some-softwares-i-like/">
+          
+          
+            
+          
+          分享一下自己平常喜欢用的软件qwq
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2019-08-14 23:08" pubdate>
+              2019-08-14
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/%E9%9A%8F%E8%AE%B0/">随记</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/%E8%BD%AF%E4%BB%B6/">软件</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+      <div class="col-12 col-md-4 m-auto index-img">
+        <a href="/2019/happy-birthday-to-peter-parker/" target="_self">
+          <img src="https://cdn.jsdelivr.net/gh/code004Accepted/blog-files-cdn/bkg.jpg" srcset="/img/loading.gif" alt="祝 Peter Benjamin Parker 生日快乐">
+        </a>
+      </div>
+    
+    <article class="col-12 col-md-8 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2019/happy-birthday-to-peter-parker/">祝 Peter Benjamin Parker 生日快乐</a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2019/happy-birthday-to-peter-parker/">
+          
+          
+            
+          
+          祝彼得·帕克18岁生日生日快乐！
+Happy birthday to Peter Benjamin Parker / Spiderman !
+
+
+
+
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2019-08-10 19:37" pubdate>
+              2019-08-10
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/%E9%9A%8F%E8%AE%B0/">随记</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/%E5%A8%B1%E4%B9%90/">娱乐</a>
+            
+              <a href="/tags/%E7%BA%AA%E5%BF%B5/">纪念</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+
+
+  <nav aria-label="navigation">
+    <span class="pagination" id="pagination">
+      <a class="extend prev" rel="prev" href="/page/2/"><i class="iconfont icon-arrowleft"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/4/"><i class="iconfont icon-arrowright"></i></a>
+    </span>
+  </nav>
+  
+  <script>
+    for (ele of document.getElementById("pagination").getElementsByTagName("a")) {
+      ele.href += '#board';
+    }
+  </script>
+
+
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+
+    
+      <a id="scroll-top-button" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+    Copyright 2021 <a href="https://github.com/code004Accepted" target="_blank" rel="nofollow noopener">code004Accepted</a>. <a href="/copyright/" target="_blank">All Rights Reserved</a>. 
+  </div>
+  
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- LeanCloud 统计PV -->
+        <span id="leancloud-site-pv-container" style="display: none">
+            总访问量 
+            <span id="leancloud-site-pv"></span>
+             |
+          </span>
+      
+      
+        <!-- LeanCloud 统计UV -->
+        <span id="leancloud-site-uv-container" style="display: none">
+            总访客数 
+            <span id="leancloud-site-uv"></span>
+             
+          </span>
+      
+
+    
+  </div>
+
+
+  
+
+  
+</footer>
+
+<!-- SCRIPTS -->
+
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+
+  <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js" ></script>
+
+
+
+
+  <script defer src="/js/leancloud.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    (function () {
+      var path = "/local-search.xml";
+      var inputArea = document.querySelector("#local-search-input");
+      inputArea.onclick = function () {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+        this.onclick = null
+      }
+    })()
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+
+</body>
+</html>

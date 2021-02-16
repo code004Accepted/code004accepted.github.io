@@ -1,0 +1,601 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=&#34;light&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/touchicon.png">
+  <link rel="icon" type="image/png" href="/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="the personal blog of Ender">
+  <meta name="author" content="Ender">
+  <meta name="keywords" content="brian,ender,chen,blog,personal,front,back,coder,oier,programmer">
+  <title>【不再适用】GC Server 用户制度介绍 | Ender&#39;s Blog</title>
+
+  <script src="https://cdn.jsdelivr.net/npm/@waline/client/dist/Waline.min.js"></script>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.4.0/styles/tomorrow-night-bright.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"code004accepted.github.io","root":"/","version":"1.8.7","typing":{"enable":true,"typeSpeed":100,"cursorChar":"|","loop":true},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":"§"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"onlypost":false},"web_analytics":{"enable":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"bf8UbRKxg2BkW2voBbHTiwJC-MdYXbMMI","app_key":"mhx590dbWwLImjB0ARU4PCpL","server_url":null}}};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.3.0"><link rel="alternate" href="/atom.xml" title="Ender's Blog" type="application/atom+xml">
+</head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>Ender's Blog</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/msg/">
+                <i class="iconfont icon-comment"></i>
+                留言
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友链
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" target="_blank" rel="noopener" href="https://travellings.now.sh/">
+                <i class="iconfont icon-books"></i>
+                开往
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" href="javascript:">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('https://cdn.jsdelivr.net/gh/code004Accepted/blog-files-cdn/bkg.jpg') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="【不再适用】GC Server 用户制度介绍">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-author" aria-hidden="true"></i>
+      Ender
+    </span>
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2019-03-30 22:35" pubdate>
+        03/30/2019 10:35晚上
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      759 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      9
+       分钟
+    </span>
+  
+
+  
+  
+    
+      <!-- LeanCloud 统计文章PV -->
+      <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+        <i class="iconfont icon-eye" aria-hidden="true"></i>
+        <span id="leancloud-page-views"></span>
+      </span>
+    
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">【不再适用】GC Server 用户制度介绍</h1>
+            
+              <p class="note note-info">
+                
+                  本文最后更新于：2 年前
+                
+              </p>
+            
+            <div class="markdown-body">
+              <p><strong>本文对于Alpha 9.0及后续版本已不再适用！新版用户说明请等待Beta版本发布后查看。如有疑问请在本文下方评论。</strong></p>
+<p>说明：本文仅对8.7后部分版本及8.8和以后有效</p>
+<h1 id="GC-Server-用户说明"><a href="#GC-Server-用户说明" class="headerlink" title="GC Server 用户说明"></a>GC Server 用户说明</h1><p>GC Server 的用户包括以下六种：</p>
+<ul>
+<li>单次用户  <font color="gree">（直接注册）</font></li>
+<li>本机用户  <font color="red">（暂未开通）</font></li>
+<li>测试用户  <font color="gree">（直接注册）</font></li>
+<li>普通会员  <font color="yellow">（联系申请）</font></li>
+<li>个人VIP   <font color="blue">（提交申请）</font></li>
+<li>管理人员  <font color="blue">（提交申请）</font></li>
+</ul>
+<a id="more"></a>
+<h2 id="单次用户"><a href="#单次用户" class="headerlink" title="单次用户"></a>单次用户</h2><h3 id="如何登录"><a href="#如何登录" class="headerlink" title="如何登录"></a>如何登录</h3><p>所有下载了正版GC Server的用户都可以在首页点击 快速注册→单次注册 进行单次注册操作。注册后可以使用gsfm的账号和用户设置并确认的一次性密码登录。</p>
+<h3 id="用户权限"><a href="#用户权限" class="headerlink" title="用户权限"></a>用户权限</h3><p>单次注册的账号权限极低，强烈不推荐使用此账号。</p>
+<h3 id="有效时间"><a href="#有效时间" class="headerlink" title="有效时间"></a>有效时间</h3><p>在关闭GC Server程序前对注册的个体程序有效。</p>
+<h2 id="本机用户"><a href="#本机用户" class="headerlink" title="本机用户"></a>本机用户</h2><p>本机用户是在此台电脑上可以永久登录的账号，利用文件存储来实现。功能暂未开通，敬请期待~</p>
+<h2 id="测试用户"><a href="#测试用户" class="headerlink" title="测试用户"></a>测试用户</h2><h3 id="如何登录-1"><a href="#如何登录-1" class="headerlink" title="如何登录"></a>如何登录</h3><h4 id="全局测试"><a href="#全局测试" class="headerlink" title="全局测试"></a>全局测试</h4><p>账号：test<br><br>密码：test</p>
+<h4 id="功能测试"><a href="#功能测试" class="headerlink" title="功能测试"></a>功能测试</h4><p>针对研发中的新功能，可能推出专用测试账号，将会在此博客&amp;<a target="_blank" rel="noopener" href="http://gcbbs.ga">GC Coding论坛</a>同步推出，敬请期待~</p>
+<h3 id="用户权限-1"><a href="#用户权限-1" class="headerlink" title="用户权限"></a>用户权限</h3><p>测试账号权限较高，可以浏览最新功能及大部分内容。</p>
+<h3 id="有效时间-1"><a href="#有效时间-1" class="headerlink" title="有效时间"></a>有效时间</h3><p>全局测试用户永久有效，功能测试的用户视情况而定。</p>
+<h2 id="普通会员"><a href="#普通会员" class="headerlink" title="普通会员"></a>普通会员</h2><h3 id="如何登录-2"><a href="#如何登录-2" class="headerlink" title="如何登录"></a>如何登录</h3><p>直接点击登录按钮后输入账号密码即可。</p>
+<h3 id="用户权限-2"><a href="#用户权限-2" class="headerlink" title="用户权限"></a>用户权限</h3><p>权限极高，几乎可以浏览全部内容。</p>
+<h3 id="有效时间-2"><a href="#有效时间-2" class="headerlink" title="有效时间"></a>有效时间</h3><p>在用户被封禁前永久有效。</p>
+<h3 id="如何注册"><a href="#如何注册" class="headerlink" title="如何注册"></a>如何注册</h3><p><del>可以在留言板向我提出申请或给我发送邮件（gscggame@zoho.com.cn），我会尽快审核并回复。（留言的请务必填上邮件地址，方便联系）</del></p>
+<p>目前暂不开通注册，请至本文最下方附加说明查看，感谢谅解。</p>
+<h2 id="个人VIP"><a href="#个人VIP" class="headerlink" title="个人VIP"></a>个人VIP</h2><h3 id="如何登录-3"><a href="#如何登录-3" class="headerlink" title="如何登录"></a>如何登录</h3><p>直接点击登录按钮后输入账号密码即可。</p>
+<h3 id="用户权限-3"><a href="#用户权限-3" class="headerlink" title="用户权限"></a>用户权限</h3><p>权限极高，可以浏览除管理面板外的全部内容。</p>
+<h3 id="有效时间-3"><a href="#有效时间-3" class="headerlink" title="有效时间"></a>有效时间</h3><p>在用户被封禁前永久有效。</p>
+<h3 id="如何注册-1"><a href="#如何注册-1" class="headerlink" title="如何注册"></a>如何注册</h3><p>对GC Server或GC Coding论坛做出较大贡献的用户会被我主动联系并进行个人VIP注册。</p>
+<h2 id="管理人员"><a href="#管理人员" class="headerlink" title="管理人员"></a>管理人员</h2><h3 id="如何登录-4"><a href="#如何登录-4" class="headerlink" title="如何登录"></a>如何登录</h3><p>特殊方式，不便透露。</p>
+<h3 id="用户权限-4"><a href="#用户权限-4" class="headerlink" title="用户权限"></a>用户权限</h3><p>可以浏览全部内容。</p>
+<h3 id="有效时间-4"><a href="#有效时间-4" class="headerlink" title="有效时间"></a>有效时间</h3><p>视情况而定。</p>
+<h3 id="如何注册-2"><a href="#如何注册-2" class="headerlink" title="如何注册"></a>如何注册</h3><p>可以给我发送邮件进行申请。With great power comes great responsibility.</p>
+<h1 id="联系方式"><a href="#联系方式" class="headerlink" title="联系方式"></a>联系方式</h1><p>请回复此博文或Email我或点击左侧头像查看联系方式。</p>
+<h1 id="附加说明"><a href="#附加说明" class="headerlink" title="附加说明"></a>附加说明</h1><p>目前普通会员暂不开放注册。如果想注册，请帮助我们开发以获取个人VIP账号，感谢谅解。</p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/%E9%A1%B9%E7%9B%AE/">项目</a>
+                    
+                      <a class="hover-with-bg" href="/categories/%E9%A1%B9%E7%9B%AE/GC-Server/">GC Server</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/%E9%A1%B9%E7%9B%AE%E6%96%87%E6%A1%A3/">项目文档</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-nc-nd/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-NC-ND 4.0 协议</a> ，转载请注明出处！</p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2019/gc-server-ver-8-8/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">GC Server Ver 8.8</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2019/about-master-music-class/">
+                        <span class="hidden-mobile">关于《音乐大师课》</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments">
+                
+                  <div id="waline"></div>
+  <script type="text/javascript">
+    Fluid.utils.waitElementVisible('waline', function() {
+        new Waline({
+          el: '#waline',
+          placeholder: "🚀评论支持Markdown\n🚯反垃圾系统已启动，请注意言辞\n📨输入E-Mail地址或注册账号以获得回复提醒\n🙋‍♂️前往留言区举报违规评论，举报无惊喜",
+          path: location.pathname,
+          avatar: 'identicon',
+          serverURL: 'https://ender-blog.vercel.app',
+          requiredFields: ['nick']
+        });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments.
+  </noscript>
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+    Copyright 2021 <a href="https://github.com/code004Accepted" target="_blank" rel="nofollow noopener">code004Accepted</a>. <a href="/copyright/" target="_blank">All Rights Reserved</a>. 
+  </div>
+  
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- LeanCloud 统计PV -->
+        <span id="leancloud-site-pv-container" style="display: none">
+            总访问量 
+            <span id="leancloud-site-pv"></span>
+             |
+          </span>
+      
+      
+        <!-- LeanCloud 统计UV -->
+        <span id="leancloud-site-uv-container" style="display: none">
+            总访客数 
+            <span id="leancloud-site-uv"></span>
+             
+          </span>
+      
+
+    
+  </div>
+
+
+  
+
+  
+</footer>
+
+<!-- SCRIPTS -->
+
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.0/dist/tocbot.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.0/anchor.min.js" ></script>
+
+
+
+  <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js" ></script>
+
+
+
+
+  <script defer src="/js/leancloud.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    (function () {
+      var path = "/local-search.xml";
+      var inputArea = document.querySelector("#local-search-input");
+      inputArea.onclick = function () {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+        this.onclick = null
+      }
+    })()
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+
+</body>
+</html>
