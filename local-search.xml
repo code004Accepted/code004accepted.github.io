@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  
+  
+  
+  <entry>
+    <title>2021年暑假总结</title>
+    <link href="/2021/summer-summary-21/"/>
+    <url>/2021/summer-summary-21/</url>
+    
+    <content type="html"><![CDATA[<p>待更</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>总结</category>
+      
+    </categories>
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>2021年5月月度总结</title>
+    <link href="/2021/monthly-summary-21may/"/>
+    <url>/2021/monthly-summary-21may/</url>
+    
+    <content type="html"><![CDATA[<h2 id="总述"><a href="#总述" class="headerlink" title="总述"></a>总述</h2><p>在2021年5月中，个人主要工作重心偏向于学习方法的进一步优化与社交关系的处理。说人话就是找到了更加适合自己的学习方法并且和朋友关系更加紧密了。</p><p>本月共计有两次周练（分四周完成），其中第一二周周练取得了一定进步，而截至发稿时，第三四周周练尚未公布成绩和排名，因此下文中将只进行粗略分析。</p><hr><p>Waiting to be continued…（（（</p><p>又要拖更了</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>总结</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>月度总结</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>网易云“性格主导色”测试——源代码分析</title>
+    <link href="/2021/netease-color-identity-test/"/>
+    <url>/2021/netease-color-identity-test/</url>
+    
+    <content type="html"><![CDATA[<p>近期空间被朋友刷爆了，简单说就是网易云出了一个性格测试工具。</p><p>在这里主要根据截获的源代码片段，针对许多网友猜测的现象进行统一答疑。</p><span id="more"></span><h2 id="Doubts"><a href="#Doubts" class="headerlink" title="Doubts"></a>Doubts</h2><h3 id="时间因素"><a href="#时间因素" class="headerlink" title="时间因素"></a>时间因素</h3><p>根据源代码分析，时间因素（包括答题开始时间、答题整体用时、每道题用时等）不计入测试范畴。至于有网友提出的“答案一样结果不一样”质疑会在后面解释，总之跟时间因素无关。</p><h3 id="姓名因素"><a href="#姓名因素" class="headerlink" title="姓名因素"></a>姓名因素</h3><p>源代码计算公式没有计入姓名。无论你姓名填的有多长还是说就一个字符，无论你姓名的ASCII码是多少，都和最终结果没有任何关系。</p><h3 id="完全随机"><a href="#完全随机" class="headerlink" title="完全随机"></a>完全随机</h3><p>源代码生成颜色时的确有随机成分，会在后面阐述。但是，就整体而言，你的每道题目的选择都会计入最终考量。总之肯定不是完全随机的。</p><h3 id="单双色由最后一题决定"><a href="#单双色由最后一题决定" class="headerlink" title="单双色由最后一题决定"></a>单双色由最后一题决定</h3><p>此猜测完全正确。在代码中，最后一题选择<code>A.浪漫</code>会按照指定算法得到双色结果，而选择<code>B.忧伤</code>会得到单色结果。</p><h2 id="Analytics"><a href="#Analytics" class="headerlink" title="Analytics"></a>Analytics</h2><p>代码显示如下：</p><p>在初始时，每一种颜色的分值均为0，在答题的过程中，会按照选择的每一个选项给不同的颜色加分：</p><p>在下面表格中，每一格中的颜色表示该题选择相应选项时给相应颜色各加一分。例如第01题（<code>这个声音让你联想到？</code>），选择<code>A. 舒适惬意的蜗居</code>会使得你的金色、绿色各加一分；选择<code>B. 被延误的约会</code>会使得你的紫色、银色、橙色各加一分；选择<code>C. 鞋子湿掉的难受</code>会使得你的粉色、蓝色各加一分。</p><p>第一至七题各有三个选项，而第八题只有<code>A. 浪漫</code>、<code>B. 忧伤</code>两选项。</p><table><thead><tr><th align="center">题号</th><th align="center">选择A项</th><th align="center">选择B项</th><th align="center">选择C项</th></tr></thead><tbody><tr><td align="center">01</td><td align="center">金、绿</td><td align="center">紫、银、橙</td><td align="center">粉、蓝</td></tr><tr><td align="center">02</td><td align="center">蓝、紫</td><td align="center">粉、橙</td><td align="center">银、金、绿</td></tr><tr><td align="center">03</td><td align="center">银、紫、橙</td><td align="center">蓝、绿</td><td align="center">金、粉</td></tr><tr><td align="center">04</td><td align="center">银、橙</td><td align="center">紫、金、绿</td><td align="center">粉、蓝</td></tr><tr><td align="center">05</td><td align="center">绿、紫</td><td align="center">橙、粉</td><td align="center">银、金、蓝</td></tr><tr><td align="center">06</td><td align="center">绿、紫、银</td><td align="center">蓝、橙</td><td align="center">金、粉</td></tr><tr><td align="center">07</td><td align="center">绿、金、紫</td><td align="center">橙、粉</td><td align="center">银、蓝</td></tr><tr><td align="center">08</td><td align="center">紫、橙、绿、银</td><td align="center">蓝、金、粉</td><td align="center">无C项</td></tr></tbody></table><p>在上述答题操作完毕后，会执行以下操作：</p><p><strong>Step I</strong> 对于有重复分值的颜色，按第08题相应选项再次加分，例如如果有重复分值而第08题选择了<code>A. 浪漫</code>，则会再额外给<code>紫、橙、绿、银</code>四个颜色各加一分</p><p><strong>Step II</strong> 根据第08题的答案决定单双色：第08题选择<code>浪漫</code>会按照双色流程生成双色，选择<code>忧伤</code>则会按照单色流程生成单色（所以说“主导色为单色是相当罕见的”，因为第08题大部分人都会选择<code>浪漫</code>）</p><p><strong>Step III - 双色</strong> 对于双色流程，会计算已有的9种双色组合（<code>粉金</code>、<code>金橙</code>、<code>粉紫</code>、<code>金蓝</code>、<code>金紫</code>、<code>橙粉</code>、<code>蓝粉</code>、<code>金绿</code>、<code>橙绿</code>）中每一项中两个颜色的得分之和，例如粉金的得分就是前面流程中粉色得分与金色得分之和。计算9种双色组合得分之后，得分最高的一组双色组合即为最终组合。另外，如果一组组合中有颜色得分为0，则直接跳过该组合。</p><p><strong>Step IV - 双色</strong> 上述产生的最终组合如果是<code>橙绿</code>这组组合，那么进行随机，有50%的概率被换为<code>蓝粉</code>，50%的概率保持<code>橙绿</code>。此后，向用户展示该组合。</p><p><strong>Step III - 单色</strong> 对于单色流程，会在已有的7种单色（<code>绿</code>、<code>橙</code>、<code>银</code>、<code>紫</code>、<code>蓝</code>、<code>金</code>、<code>粉</code>）中找到得分最高的一个颜色，即为最终颜色。</p><p><strong>Step IV - 单色</strong> 上述产生的结果如果是<code>绿</code>，则进行随机，有50%的概率被换为<code>蓝</code>，50%的概率保持<code>绿</code>。此后，向用户展示该单色。</p><h2 id="Source"><a href="#Source" class="headerlink" title="Source"></a>Source</h2><figure class="highlight js"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs js">p = [<br>  [[<span class="hljs-string">&quot;金&quot;</span>, <span class="hljs-string">&quot;绿&quot;</span>], [<span class="hljs-string">&quot;紫&quot;</span>, <span class="hljs-string">&quot;银&quot;</span>, <span class="hljs-string">&quot;橙&quot;</span>], [<span class="hljs-string">&quot;粉&quot;</span>, <span class="hljs-string">&quot;蓝&quot;</span>]], <br>  [[<span class="hljs-string">&quot;蓝&quot;</span>, <span class="hljs-string">&quot;紫&quot;</span>], [<span class="hljs-string">&quot;粉&quot;</span>, <span class="hljs-string">&quot;橙&quot;</span>], [<span class="hljs-string">&quot;银&quot;</span>, <span class="hljs-string">&quot;金&quot;</span>, <span class="hljs-string">&quot;绿&quot;</span>]], <br>  [[<span class="hljs-string">&quot;银&quot;</span>, <span class="hljs-string">&quot;紫&quot;</span>, <span class="hljs-string">&quot;橙&quot;</span>], [<span class="hljs-string">&quot;蓝&quot;</span>, <span class="hljs-string">&quot;绿&quot;</span>], [<span class="hljs-string">&quot;金&quot;</span>, <span class="hljs-string">&quot;粉&quot;</span>]], <br>  [[<span class="hljs-string">&quot;银&quot;</span>, <span class="hljs-string">&quot;橙&quot;</span>], [<span class="hljs-string">&quot;紫&quot;</span>, <span class="hljs-string">&quot;金&quot;</span>, <span class="hljs-string">&quot;绿&quot;</span>], [<span class="hljs-string">&quot;粉&quot;</span>, <span class="hljs-string">&quot;蓝&quot;</span>]], <br>  [[<span class="hljs-string">&quot;绿&quot;</span>, <span class="hljs-string">&quot;紫&quot;</span>], [<span class="hljs-string">&quot;橙&quot;</span>, <span class="hljs-string">&quot;粉&quot;</span>], [<span class="hljs-string">&quot;银&quot;</span>, <span class="hljs-string">&quot;金&quot;</span>, <span class="hljs-string">&quot;蓝&quot;</span>]], <br>  [[<span class="hljs-string">&quot;绿&quot;</span>, <span class="hljs-string">&quot;紫&quot;</span>, <span class="hljs-string">&quot;银&quot;</span>], [<span class="hljs-string">&quot;蓝&quot;</span>, <span class="hljs-string">&quot;橙&quot;</span>], [<span class="hljs-string">&quot;金&quot;</span>, <span class="hljs-string">&quot;粉&quot;</span>]], <br>  [[<span class="hljs-string">&quot;绿&quot;</span>, <span class="hljs-string">&quot;金&quot;</span>, <span class="hljs-string">&quot;紫&quot;</span>], [<span class="hljs-string">&quot;橙&quot;</span>, <span class="hljs-string">&quot;粉&quot;</span>], [<span class="hljs-string">&quot;银&quot;</span>, <span class="hljs-string">&quot;蓝&quot;</span>]], <br>  [[<span class="hljs-string">&quot;紫&quot;</span>, <span class="hljs-string">&quot;橙&quot;</span>, <span class="hljs-string">&quot;绿&quot;</span>, <span class="hljs-string">&quot;银&quot;</span>], [<span class="hljs-string">&quot;蓝&quot;</span>, <span class="hljs-string">&quot;金&quot;</span>, <span class="hljs-string">&quot;粉&quot;</span>]]],<br>h = [<span class="hljs-string">&quot;绿&quot;</span>, <span class="hljs-string">&quot;橙&quot;</span>, <span class="hljs-string">&quot;银&quot;</span>, <span class="hljs-string">&quot;紫&quot;</span>, <span class="hljs-string">&quot;蓝&quot;</span>, <span class="hljs-string">&quot;金&quot;</span>, <span class="hljs-string">&quot;粉&quot;</span>],<br>m = [<br>  [<span class="hljs-string">&quot;粉&quot;</span>, <span class="hljs-string">&quot;金&quot;</span>], <br>  [<span class="hljs-string">&quot;金&quot;</span>, <span class="hljs-string">&quot;橙&quot;</span>], <br>  [<span class="hljs-string">&quot;粉&quot;</span>, <span class="hljs-string">&quot;紫&quot;</span>], <br>  [<span class="hljs-string">&quot;金&quot;</span>, <span class="hljs-string">&quot;蓝&quot;</span>], <br>  [<span class="hljs-string">&quot;金&quot;</span>, <span class="hljs-string">&quot;紫&quot;</span>], <br>  [<span class="hljs-string">&quot;橙&quot;</span>, <span class="hljs-string">&quot;粉&quot;</span>], <br>  [<span class="hljs-string">&quot;蓝&quot;</span>, <span class="hljs-string">&quot;粉&quot;</span>], <br>  [<span class="hljs-string">&quot;金&quot;</span>, <span class="hljs-string">&quot;绿&quot;</span>], <br>  [<span class="hljs-string">&quot;橙&quot;</span>, <span class="hljs-string">&quot;绿&quot;</span>]];<br><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">v</span>(<span class="hljs-params">t, e, n</span>) </span>&#123;<br>    p[n][e - <span class="hljs-number">1</span>].forEach(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">e</span>) </span>&#123;<br>      t[e] = t[e] ? t[e] + <span class="hljs-number">1</span> : <span class="hljs-number">1</span><br>    &#125;)<br>  &#125;<br>  <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">N</span>(<span class="hljs-params">e, n</span>) </span>&#123;<br>    <span class="hljs-keyword">var</span> r, o = -<span class="hljs-number">1</span>;<br>    <span class="hljs-keyword">return</span> e.forEach(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">e, t</span>) </span>&#123;<br>      e = n(e);<br>      o &lt; e &amp;&amp; (o = e, r = t)<br>    &#125;),<br>    e[r]<br>  &#125;<br>  <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">y</span>(<span class="hljs-params">e</span>) </span>&#123;<br>    <span class="hljs-keyword">var</span> n, r, o, t = e.length,<br>    i = &#123;&#125;;<br>    <span class="hljs-keyword">if</span> (e.slice(<span class="hljs-number">0</span>, t - <span class="hljs-number">1</span>).forEach(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">e, t</span>) </span>&#123;<br>      <span class="hljs-keyword">return</span> v(i, e, t)<br>    &#125;), n = i, r = !<span class="hljs-number">1</span>, o = &#123;&#125;,<br>    <span class="hljs-built_in">Object</span>.keys(n).forEach(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">e</span>) </span>&#123;<br>      <span class="hljs-keyword">var</span> t = n[e];<br>      o[t] &amp;&amp; (r = !<span class="hljs-number">0</span>),<br>      o[t] = e<br>    &#125;), r &amp;&amp; v(i, e[t - <span class="hljs-number">1</span>], t - <span class="hljs-number">1</span>), <span class="hljs-number">2</span> !== e[<span class="hljs-number">7</span>]) <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;橙绿&quot;</span> === (a = N(m,<br>    <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">e</span>) </span>&#123;<br>      <span class="hljs-keyword">return</span> i[e[<span class="hljs-number">0</span>]] + i[e[<span class="hljs-number">1</span>]]<br>    &#125;).join(<span class="hljs-string">&quot;&quot;</span>)) &amp;&amp; <span class="hljs-number">.5</span> &lt; <span class="hljs-built_in">Math</span>.random() &amp;&amp; (a = <span class="hljs-string">&quot;蓝粉&quot;</span>),<br>    a;<br>    <span class="hljs-keyword">var</span> a = N(h,<br>    <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">e</span>) </span>&#123;<br>      <span class="hljs-keyword">return</span> i[e]<br>    &#125;);<br>    <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;绿&quot;</span> === a &amp;&amp; <span class="hljs-number">.5</span> &lt; <span class="hljs-built_in">Math</span>.random() &amp;&amp; (a = <span class="hljs-string">&quot;蓝&quot;</span>),<br>    a<br>  &#125;<br></code></pre></div></td></tr></table></figure><h2 id="Comment"><a href="#Comment" class="headerlink" title="Comment"></a>Comment</h2><p>总体来说，测试虽然有一定科学性，但由于其随机性（蓝随机换绿、绿橙随机换蓝粉），可信度并不高</p><p>另外，我专门查了一下，没找到研究声学与性格的关系…</p><p>个人而言，我认为这个测试反而更多地偏向于让你知道自己的阅历，跟性格关系好像不大。因为大部分题目（除了第05、08题）测试的是正常人平常很少听到的声音，其他的题目都是一些很常见的声音，至于这个声音会让测试者联想到什么和个人工作、人生阅历很显然是相挂钩的。举例的话第07题，给出的是键盘敲击声，如果是写代码的或者网文作家之类就可能会认为这种声音给人灵感，而一些很少在电脑上进行创作的人就可能认为这种声音很吵人，常常打字骂人的就更会认为这种声音是“情绪激动的骂人”</p><h2 id="Scores"><a href="#Scores" class="headerlink" title="Scores"></a>Scores</h2><p>既然性格测试不怎么准，那么就别指望从他的得分设置里面挖出什么宝藏了。还是老老实实地拿他的bgm和视频跑路吧。</p><p>下面放上开头和每道题的背景音乐、视频（第05、07题的背景是在网页端写的，所以没有背景视频只有bgm）</p><video src="https://cdn.jsdelivr.net/gh/code004Accepted/blog-files-cdn@main/Front.mp4" controls="controls" width="100%"><p class="note note-warning">您的浏览器不支持 video 标签</p></video><p><br><br></p><video src="https://cdn.jsdelivr.net/gh/code004Accepted/blog-files-cdn@main/Problem%201.mp4" controls="controls" width="100%"><p class="note note-warning">您的浏览器不支持 video 标签</p></video><p><br><br></p><video src="https://cdn.jsdelivr.net/gh/code004Accepted/blog-files-cdn@main/Problem%202.mp4" controls="controls" width="100%"><p class="note note-warning">您的浏览器不支持 video 标签</p></video><p><br><br></p><video src="https://cdn.jsdelivr.net/gh/code004Accepted/blog-files-cdn@main/Problem%203.mp4" controls="controls" width="100%"><p class="note note-warning">您的浏览器不支持 video 标签</p></video><p><br><br></p><video src="https://cdn.jsdelivr.net/gh/code004Accepted/blog-files-cdn@main/Problem%204.mp4" controls="controls" width="100%"><p class="note note-warning">您的浏览器不支持 video 标签</p></video><p><br><br></p><audio src="https://cdn.jsdelivr.net/gh/code004Accepted/blog-files-cdn@main/Problem%205.mp3" controls="controls"><p class="note note-warning">您的浏览器不支持 audio 标签</p></audio><p><br><br></p><video src="https://cdn.jsdelivr.net/gh/code004Accepted/blog-files-cdn@main/Problem%206.mp4" controls="controls" width="100%"><p class="note note-warning">您的浏览器不支持 video 标签</p></video><p><br><br></p><audio src="https://cdn.jsdelivr.net/gh/code004Accepted/blog-files-cdn@main/Problem%207.mp3" controls="controls"><p class="note note-warning">您的浏览器不支持 audio 标签</p></audio><p><br><br></p><video src="https://cdn.jsdelivr.net/gh/code004Accepted/blog-files-cdn@main/Problem%208.mp4" controls="controls" width="100%"><p class="note note-warning">您的浏览器不支持 video 标签</p></video><h2 id="Results"><a href="#Results" class="headerlink" title="Results"></a>Results</h2><p>自己写了个cpp模拟整个流程（除去几个随机的流程），结果如下：</p><figure class="highlight plaintext"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs text">粉金 40<br>金橙 102<br>粉紫 211<br>金蓝 49<br>金紫 201<br>橙粉 325<br>蓝粉 40<br>金绿 264<br>橙绿 955<br><br>绿 97<br>橙 137<br>银 104<br>紫 108<br>蓝 732<br>金 583<br>粉 426<br></code></pre></div></td></tr></table></figure><p>注：上述数字表示在任意选择选项的4374种情况中各种颜色的占比，不考虑单双各一种“50%概率换色”的情况</p><p>另外可以看出，这种换颜色策略正是为了平衡各种颜色的占比而存在的</p><p>代码：<a href="./NeteaseColor.cpp">NeteaseColor.cpp</a></p><p>结果：<a href="./results.txt">results.txt</a></p><p><strong>更正：经大佬指正，在单双色生成过程中如有总分一样高的组合，按照h、m取较前而非较后的结果。代码和结果已做相应调整</strong></p><p><img src="/2021/netease-color-identity-test/before_random.png" alt="随机前各颜色种类数"></p><p><img src="/2021/netease-color-identity-test/after_random.png" alt="随机后各颜色最终占比"></p>]]></content>
+    
+    
+    <categories>
+      
+      <category>音乐</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>网易云</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>我的人生是五彩斑斓的</title>
+    <link href="/2021/my-colorful-life/"/>
+    <url>/2021/my-colorful-life/</url>
+    
+    <content type="html"><![CDATA[<p>常说，我们每个再小不过的决定，都有可能影响自己或别人的一生。</p><p>我的成长经历，自然，也受到了许许多多个人、许许多多件事的影响；而我，也影响了不少人。</p><p>十五岁前的我，并不能算完整意义上的一个人。一个人是应该有独立思想的，一个人是应该有所追求的，一个人应该在懵懂无知时为他人而奋斗、在深谙世事后为自己而奋斗，但一个人，自始至终，就不应该不奋斗——或许可以允许短时间的放纵，但绝不能允许长时间的堕落。</p><p>前十五年中，我遇到了形形色色的人，也某种意义上对社会有了虽然比较浅但一定程度上的认知。</p><p>这十五年里，帮助过我的人，数不胜数，而其中最令我印象深刻的有两位老师和两位同学。他们会在正文中被提及。</p><p>所以，就让这篇流水账式的混乱长文，成为我一生的分界线吧——前面，是迷茫与彷徨；后面，是坦荡与开放。</p><hr><p>如果把人生中的酸甜苦辣比作不同的颜色，那么，我的人生，无疑是五彩斑斓的。</p><h2 id="童年"><a href="#童年" class="headerlink" title="童年"></a>童年</h2><p>我的童年的伊始，是绿色的。它象征着活泼与生机，也代表着远离危险的安全。</p><p>我对我的童年，留下的仅有模糊的画面记忆。从正门口的多车道向内延伸而出，穿越一片小树林，就到了每天上学路上的第二段，下车转为步行。长长的直道，左侧是一个双层楼的食堂——那里的鱼香肉丝又便宜又好吃，但皮蛋瘦肉粥却难吃到想吐；再左侧是居民区的老式建筑。步行约300米后就到了小学的校门口。依稀记得，小学的校园是在不断变大的，原先靠教学楼内侧的走廊最后被分成了不同班级的“杂物间”，而外侧则新修了一条以淡黄色为主色调的悬空走廊。</p><p>小学的生活是天真而快乐的。记得为了成绩到底是98分还是100分而跟老师喋喋不休；记得某次春游竟有同学主动拿真钱换代币（而且是在活动结束后）；记得放学时没抄完语文生词的惶恐；也忘不了学校精心设计的六一儿童节活动。</p><p>小学的学习是令人愉快的——至少，给我的感觉是以愉快为主的。不过，最让人害怕的还是语文的“看图说话”——班上上过语文培优的同学都知道要在文章最后写上一行“这个故事告诉了我们一个XXX的道理”——而我则啥也不懂，有时候眼睛还会识别错信息，明明试卷上画着的是一只长颈鹿帮另一个小动物过河，我硬是给看称了斑马，最后我的故事变成了斑马看到对岸的小动物想吃它，然后掉到河里淹死了，多么负能量啊。</p><p>小学同学们好像都从未有过坏念头，虽说在一起聊天时好像也有对所谓“成熟”的追求、渴望，而同时又嘲讽那些自称“成熟”者，但在却从未真的把排名当回事，当然也就没有以成绩为导向的刻意伤害。</p><p>心魔诞生于五年级因客观原因离开某思机构前往某心机构，参加第一次分班考试时既不令人意外又令人意外地考到了前列。环境由受制转向自由，心灵由纯洁变得污浊。环境的影响使成长于保护圈中的我全速走向堕落，而且自甘堕落。忘记坚持学习的长久利益，而去追求和同学嬉戏的“奶头乐”的心魔，自此植根于我幼小的心里，日日夜夜茁壮成长。</p><p>童年的末尾，是机缘与巧合，让二中广雅向身处几乎无奥数杯赛奖项绝境之中的我，抛出了橄榄枝。至今我仍然没能弄清，是什么让本不起眼的我从一群虽前期不如我但后期远超我的竞争对手中被特别对待。</p><p>这次机缘与巧合，不仅改变了我的人生轨迹，也或多或少地影响了其他人。自此，他们有的提前从事高中数学竞赛、率先走向了辉煌；有的改变了初高中的择校规划，只为防止受到我的干扰；也有的远离江岸，去了更加遥远的初中。</p><p>自此，我的童年告一段落。它由绿色开始，由亮色调的草绿逐渐转向了暗色调的墨绿，但终究还是以绿色为结。</p><h2 id="少年"><a href="#少年" class="headerlink" title="少年"></a>少年</h2><p>我的少年，是黄色的。山雨欲来风满楼，危险还未到来，但危险的前兆却已展现无遗。</p><p>我对少年有着相当清晰的回忆，它始于那时的二中广雅京汉大道校区，现在的沈阳路小学B区。</p><p>开学第一天，七年级13班的同学们在操场上摆开方阵，每一个人眼中都充满了光，包括我。</p><p>我在操场上，再一次知道了，自己已然成为少年。</p><p>既然是少年，就应当有少年的意志与决心，但那时懵懂无知的我，又怎会乘梦想之帆，就此奋力拼搏呢？</p><p>初一上学期，反正我是没做过数学作业的。至于被数学老师请了多少次家长，反正我也是没数过的。</p><p>童年末、少年始的经历，决定了我初一的初始“社会”地位——零。虽为零，但不乏同学关心，不乏同学帮助，不过完全没有能心有灵犀、共通共情的朋友。</p><p>初二迈步跨入新校区，迎面而来的同样是新鲜感，少年蓬勃之气再次涌上心头，这次表现出来的是在班上做跳梁小丑。“博得”同学欢笑的同时，那时的我，又怎么会意识得到，自己的无知与可笑？</p><p>暑假的努力还是取得了成效，初二上学期的第一次周练，考出了当时最佳成绩——班级第四名。随后，期中却又失利，考到了班级第52/64名，也是这时我的（120分满分的）数学第一次跌破100分，到了97分。</p><p>自此，经过多方协调和努力，算是取得了一些突破，在八上期末拿到了班级第三。这也是初中拿过的最好的成绩了。</p><p>可惜的是，同学们都是马太效应，考得好的一天比一天好，唯独我是那个一考好就松懈，一松懈就成绩下滑，然后又不敢面对，最后又变成在父母和老师之间演戏。我的整个初中生活，就是这样的循环——好一时，坏一时；认真一时，松懈一时。</p><p>初三上半学期的主旋律是不断的自我修正，也是这时，我逐渐步入了觉醒阶段。</p><p>下学期，突如其来的疫情，让同学们都分外压抑。我又当上了老师的“小助手”，积极扮演跳梁小丑的角色，“帮助”同学们处理“技术问题”。</p><p>记忆最清楚的有返校后的严格防疫要求，有规模宏大的毕业典礼兼青春仪式，更有网课期间和L同学共度困难的时光。</p><p>还能怎么共度困难？当然是联机啦。</p><p>网课期间的学习虽有放纵，但也没有那么吓人。那也是整个初中最令人温暖的时光了——你不是一个人在电脑前孤独地学习，你有朋友，你有一个可以跟你分享真情实感，可以跟你一起调侃H老师的口音、W老师的口头禅、T老师背后不为人知的事迹的朋友。You are not alone.</p><p>记忆中更加抹不去的无疑是中考了。</p><p>还记得各科老师精心准备的各式祝福——红绳、福袋、“逢考必过”符，记得T老师多次嘱咐大家要多穿外套（然后实际上热得要命），记得市十六中考场的脏乱差，记得当时的紧张与热闹。</p><p>等一切热闹归于沉寂，已是出分时。没考好是当然的，按照我的习惯，前面的五月调考考得不错，那就必然是要放纵的。管你下次是周练月考还是期中期末，就是中考也无所谓，该放纵的必须放纵，对吧？</p><p>中考后的事情，也就是考完后22号上午的班级毕业照拍摄活动了。几张照片，划上了少年的句号。</p><p>少年生活，从黄色起，到红色止。留下的，有彷徨，有遗憾，却鲜有真正令人快乐的时光。</p><h2 id="青年"><a href="#青年" class="headerlink" title="青年"></a>青年</h2><p>青年从迈进武汉二中的校门开始。初始的颜色，是鲜亮而极具危险色彩的红色，紧接着转为了预示着惨案的血红，又在努力下终于回归到了一种蓝色——但仍有暗流涌动。</p><p>这篇回忆录是在高一下期中后写的，所以青年阶段当然是要重点阐述的。</p><p>8月10号竞赛班提前开学，影响了我的学习计划和安排…不过这只是在找借口，因为我没有学习计划和安排。也不能说没有，计划大概是这样的：</p><figure class="highlight plaintext"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs text">每天上午预习物理竞赛<br>每天下午预习课内知识<br>每天晚上再看物理竞赛<br></code></pre></div></td></tr></table></figure><p>嗯，这就是“计划”。看！多么简洁！</p><p>因疫情延迟了一个月的中考在7月20~21日才举行，这到8月10日只有不到20天的时间，照我这个态度，能学什么？</p><p>于是开学自然就落后了。</p><p>开学后我的行为更是让许多人疑惑不解——别人落后了会奋起直追，而我落后了，就……上课睡觉，不写作业，任由自己落后？</p><p>也不像我之前总结的那样“自甘堕落”，这其实是另一个深层次的原因。</p><p>注意到我前文提及了“思想进入觉醒阶段”，但是只是刚刚进入，学习的目的还停留在向父母、老师交差的层面。</p><p>所以，自然而然地就会去钻空子、走漏洞，想尽办法偷懒。不偷懒的人不是不会偷懒，也不是不想偷懒，只是他们知道应该约束自己不偷懒。毕竟，人之初，性本懒嘛。</p><p>偷懒的结局，就是成绩从中下层掉到了倒数第一，是的，倒数第一。谁又能接受自己名落孙山呢？在你以为我会爆发出惊天动地的能量实现绝地反击的时候，我却在同学间“游说”，其规模之宏大堪比苏秦游说六国。我“游说”的内容是，我并没有真正这么差，只是因为“数学答题卡选择题没扫上去”而“数学老师懒得帮我加分”。</p><p>多么幼稚啊，多么幼稚啊，多么幼稚啊。</p><p>被X老师约去谈话，明确指出了这种成绩可能考不上大学。</p><p>主动申请了退出物竞，专心搞课内。</p><p>期中考试再次倒二，年级总共600人不到，考到了第418名——一个超出“降班线”200名两倍的名次。</p><p>被要求写了承诺书，保证如果期末考不到200名就主动申请降班。</p><p>高一上的下半学期的主题词是逆袭，定了目标，加了大量培优课程，磕磕绊绊算是期末混了个184名——离危险线只差5分。</p><p>还记得那段时间的大量时间投入；记得每天在窗台上哭泣、想象自己跳下去会是怎样的情景；记得想睡觉却逼着自己刷题。</p><p>多么无知啊，多么无知啊，多么无知啊。</p><p>寒假提前学了部分下学期课程，这次确实制定了规划，虽然落实能力欠缺，但是也算是走上正轨了罢。</p><p>在校外结识了Y同学，可谓一见如故，初次见面我就认为他有一种独特的能力——这种能力，我到现在都不知道是什么。</p><p>Y同学的陪伴给予了我很大的心理支持与激励（虽然他自己好像没感觉到）。步入高一下，我已经成长为了一个有志向并愿意为之努力的“新一代”青年了。</p><p>但是光“愿意为之努力”还不够，你得努力才行，这是高一下上半学期的主要问题。</p><p>放纵的老毛病还是没彻底改掉，所以在一次周练取得了微小的进步后，又开始偷奸耍滑——虽然这次还算有点底线。</p><p>X老师又一次警告我之后，算是不敢再作奸犯科了。踏实努力，期中有了明显进步——年级第33名。算是个对得起自己的成绩。</p><p>中间有一个点没解释清楚——我为什么会说高一上期中到期末的“逆袭”是“无知”的行为呢？</p><p>因为，那时的我又怎知道，高效五分钟，胜过低效两小时。没搞懂知识的情况下，刷再多题有何用？速度慢，效率低，还自以为很努力（当然，也不能说就不努力），是当代学渣的常态。</p><h2 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h2><p>零零碎碎写了很多东西，有自己想说的，也有自己本不打算写出来的，终究还是都写出来了。</p><p>我常拿Fallen Kingdom（《失落的王国》）系列作品的标题比喻我这跌宕起伏的人生：</p><ol><li>Fallen Kingdom——王国沦陷，支离破碎</li><li>Take Back the Night——奋起直追，夺回黑夜</li><li>Find the Pieces——找齐碎片，集齐梦想</li><li>Dragonhearted——团结奋进，共创辉煌</li></ol><p>这背后藏匿的，究竟是懒惰这一恶习的兴旺、责任感的缺失，还是单纯地无知？我觉得都有。责任感的缺失让我允许自己放纵自己，而懒惰与无知则是这一过程的催化剂。</p><p>至于教育层面上的问题，以后有时间再写吧。</p><p>全文完。</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>人生</category>
+      
+    </categories>
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>文章加密测试</title>
+    <link href="/2021/test-on-encryption/"/>
+    <url>/2021/test-on-encryption/</url>
+    
+    <content type="html"><![CDATA[<div id="hexo-blog-encrypt" data-wpm="Sorry, this passphrase does not seem right. Please try again." data-whm="Sorry, the content of this post cannot be verified. However you may view the content after decryption."><div class="hbe-input-container"><input type="password" id="hbePass" placeholder="文章已被加密，请输入密码查看" /><label>文章已被加密，请输入密码查看</label><div class="bottom-line"></div></div><script id="hbeData" type="hbeData" data-hmacdigest="d9bf1e1e49b5e0a789587b2f5b1ace876546f761247915a087abdff5cab4fa32">cce7d510a59c784361d798fbcf1dbdd5895209da7bbb96fbffbc14a81f82b95b11fcfbb541c785214e76ddd12dd2e377</script></div><script src="/lib/blog-encrypt.js"></script><link href="/css/blog-encrypt.css" rel="stylesheet" type="text/css">]]></content>
+    
+    
+    <categories>
+      
+      <category>测试</category>
+      
+    </categories>
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>浅谈Minecraft服务器的搭建</title>
+    <link href="/2021/building-a-mc-server/"/>
+    <url>/2021/building-a-mc-server/</url>
+    
+    <content type="html"><![CDATA[<h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><p>众所周知，Minecraft分为基岩版BE和Java版JE。二者之间的服务器是相互独立的——即JE和BE有不同的服务器搭建方式，且JE的客户端与BE的服务端不能连接，BE的客户端与JE的服务端也同样无法互相检测。</p><p>JE服务器的优势主要在于可定义性强：有大量非官方的服务端，以及大量插件和mod。而BE的优势则在于其用户并不需要拥有一台电脑，且可以多端同步游戏。JE必须使用电脑上的Java版，而BE则可以跨苹果安卓和Windows Mobile手机，与Xbox 360、Switch、PS4等专用游戏设备，及Windows 10的电脑联机。</p><p><strong>值得注意的是，本文对于JE/BE的服务器搭建教程均不包括Mojang官方的Realms。Realms同样分JE与BE版，且同样不能联机BE与JE。Realms是Mojang官方的付费服务，可以在官网订购。据笔者了解，其价格相较自行搭建服务器更为昂贵（约60元每月），并且在国内的连接并不十分稳定，且无法添加mod及插件，故并不推荐。此外，无论是JE还是BE的Realms均要求参与者全部是正版用户。一定程度上，笔者认为这也决定了国内Realms的小众。</strong></p><h2 id="Java-Edition"><a href="#Java-Edition" class="headerlink" title="Java Edition"></a>Java Edition</h2><p>JE的服务端有许多种。我们先从官方的说起</p><h3 id="Official-JE-Server"><a href="#Official-JE-Server" class="headerlink" title="Official JE Server"></a>Official JE Server</h3><p>当每一个JE的新版本发布时（一般仅限正式版而不包括每周快照），Mojang会在官网同步发布服务端的jar文件，可以在下面的地址下载：<a href="https://www.minecraft.net/download/server">https://www.minecraft.net/download/server</a></p><p>此页面会在每一个正式版发布时更新，从而在笔者写下本文时仅能下载1.16.5版本的服务器jar文件。不过，您可以在官方启动器中“添加版本”处选择您需要的版本，并点击选择框右上角的下载服务端按钮，如下：</p><p>/<em>待补图</em>/</p><p>此外，您也可以在<a href="https://mcversions.net/">MCVersions.net</a>搜索您需要的版本，并点击下方的下载按钮下载。以1.7.10为例：</p><p><img src="/2021/building-a-mc-server/mcversions1.png" alt="MCVersions.net"></p><p><img src="/2021/building-a-mc-server/mcversions2.png" alt="MCVersions.net"></p><p>如上图所示，点击Download Server按钮，即可下载选定版本的服务器jar。值得赞赏的是，该下载链接来自Mojang官网，从而您无需有任何顾虑。</p><p>下载jar文件后，您需要在安装了Java的情况下（检验java是否安装的指令：<code>java -version</code>），前往下载的jar文件存放的目录中，并执行指令：<code>java -jar server.jar</code>（注：若下载的文件名不是<code>server.jar</code>，建议先重命名），此后您会看到jar文件存放的目录（下称<em><strong>服务器目录</strong></em>）中看到<code>eula.txt</code>等文件被生成。</p><p>打开<code>eula.txt</code>文件，将其中的<code>eula=false</code>改为<code>eula=true</code>后再次使用上面的指令即可启动服务器。之所以Mojang要设置此选项（或者可以说是障碍），就是为了确保每一位开服的用户都遵守其最终用户许可协议（End-User License Agreement，缩写EULA）。</p><p>正常情况下，如下图所示（笔者用的是1.12.2的服务端）：</p><p><img src="/2021/building-a-mc-server/server1.png" alt="MCVersions.net"></p><p>JE版所有的服务器无外乎是使用了jvm技术，即Java Virtual Machine，通俗理解就是Java的一个小“虚拟机”。无论JE版的服务器还是客户端其实都是利用了该技术。由此，可能部分较老旧的电脑即使安装了Java也无法正常启动该功能。笔者曾使用的于2015年购买的低配联想笔记本可以正常使用该功能。</p><p>启动后的图形化用户界面（又称GUI，Grafical User Interface）如图所示：</p><p><img src="/2021/building-a-mc-server/server2.png" alt="MCVersions.net"></p><p>其中左上角的Stats显示了服务器对运行服务器的电脑（或云服务器等）的内存、CPU占用情况及服务器响应情况，左下角是在线玩家列表（示例图中因没有玩家在线，列表为空），右侧是服务器运行日志、聊天记录等。您可以在右下角的输入框中输入指令，或以服务器Server身份参与聊天（使用命令<code>say xxx</code>），命令前既可以打<code>/</code>号也可以不打，以下几种用法都是正确且可以正常执行的：</p><figure class="highlight jboss-cli"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs jboss-cli">say 一句话<br><span class="hljs-string">/say</span> 另一句话<br>weather rain<br><span class="hljs-string">/weather</span> <span class="hljs-keyword">clear</span><br></code></pre></div></td></tr></table></figure><p>（注：一般情况下为方便服务器管理人员在自己的客户端中直接执行指令，建议执行命令<code>op xxx</code>（xxx为服主或管理人员用户名）后直接在客户端输入<code>/</code>后执行指令）</p><p>现在请先执行<code>stop</code>以关闭服务器。注意该指令可能只能在服务端执行。</p><p>执行后，服务端将自动执行系列操作：停止服务器（此后在线玩家将被“失去连接”，并且在玩家的多人游戏界面上服务器将“无法被找到”，新玩家将无法加入服务器）、保存当前玩家信息、保存地图，关服（此后服务端的服务器进程将被彻底关闭，前文提及的服务器GUI也会关闭）</p><p>现在，您可以根据系统撰写脚本<code>start.bat</code>/<code>start.cmd</code>（Windows下）或<code>start.sh</code>（Linux下），内容同上：</p><figure class="highlight mipsasm"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs mipsasm"><span class="hljs-keyword">java </span>-<span class="hljs-keyword">jar </span>server.<span class="hljs-keyword">jar</span><br></code></pre></div></td></tr></table></figure><p>同时，真正进行服务器联机时，为了服务器发挥更好的性能，您可以加入如下选项（可选）：</p><ol><li><code>-nogui</code>，该项可以不启动服务器GUI画面，从而节省服务器内存</li><li><code>-Xms</code>，该项可以定义服务器刚刚启动时占用的内存，建议在中大型服务器中与最大内存设为相同值以加快服务器启动，对于普通用户建议<code>-Xms512M</code>（512MB）或<code>-Xms1G</code>（1GB）就够了。该项不会对长时间服务器运行有性能影响，故也可以不设置</li><li><code>-Xmx</code>，该项可以定义服务器占用的最大内存，一般来说云服务器就直接开最大内存吧，反正收费一样；家用电脑开服的自己协调一下，一般来说1~2GB就够了</li></ol><p>另外，家用电脑开服一般需要内网映射，如果要用同一台电脑上客户端（而且不加mod/插件的）的建议不要用上面的jar文件开服，而是用LanServerProperties的mod直接用客户端开局域网联机，再内网映射。该模组可以解决局域网联机端口不固定（也可以使用<code>/publish xxx</code>来固定在<code>xxx</code>端口开服，如<code>/publish 25565</code>）、不允许非正版用户等设定，会在后面介绍。</p><p>待更，抽时间继续更%</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>教程</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>Minecraft</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>如何快速在中国互联网走红</title>
+    <link href="/2021/going-viral/"/>
+    <url>/2021/going-viral/</url>
+    
+    <content type="html"><![CDATA[<p>待更</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>教程</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>互联网</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  
+</search>

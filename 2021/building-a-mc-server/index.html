@@ -1,0 +1,611 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=&#34;light&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/touchicon.png">
+  <link rel="icon" href="/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#343143">
+  <meta name="description" content="一只高中狗的精神栖息地">
+  <meta name="author" content="Ender">
+  <meta name="keywords" content="brian,ender,chen,blog,personal,front,back,coder,oier,programmer">
+  
+    <link rel="manifest" href="manifest.json">
+  
+  <title>浅谈Minecraft服务器的搭建 | Ender&#39;s Blog</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.7.2/styles/tomorrow-night-bright.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"code004accepted.github.io","root":"/","version":"1.8.11","typing":{"enable":true,"typeSpeed":100,"cursorChar":"|","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":"#"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":true,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"bf8UbRKxg2BkW2voBbHTiwJC-MdYXbMMI","app_key":"mhx590dbWwLImjB0ARU4PCpL","server_url":null}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="Ender's Blog" type="application/atom+xml">
+</head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>Ender's Blog</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/msg/">
+                <i class="iconfont icon-comment"></i>
+                留言
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/appeal/">
+                <i class="iconfont icon-clipcheck"></i>
+                工单
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友链
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" target="_blank" rel="noopener" href="https://travellings.link/">
+                <i class="iconfont icon-books"></i>
+                开往
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('https://cdn.jsdelivr.net/gh/code004Accepted/blog-files-cdn@main/bkg.jpg') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="浅谈Minecraft服务器的搭建">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-author" aria-hidden="true"></i>
+      Ender
+    </span>
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2021-04-22 20:28" pubdate>
+        04/22/2021 晚上08:28
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      1.7k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      20
+       分钟
+    </span>
+  
+
+  
+  
+    
+      <!-- LeanCloud 统计文章PV -->
+      <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+        <i class="iconfont icon-eye" aria-hidden="true"></i>
+        <span id="leancloud-page-views"></span>
+      </span>
+    
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">浅谈Minecraft服务器的搭建</h1>
+            
+              <p class="note note-info">
+                
+                  本文最后更新于：04/22/2021 晚上08:28
+                
+              </p>
+            
+            <div class="markdown-body">
+              <h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><p>众所周知，Minecraft分为基岩版BE和Java版JE。二者之间的服务器是相互独立的——即JE和BE有不同的服务器搭建方式，且JE的客户端与BE的服务端不能连接，BE的客户端与JE的服务端也同样无法互相检测。</p>
+<p>JE服务器的优势主要在于可定义性强：有大量非官方的服务端，以及大量插件和mod。而BE的优势则在于其用户并不需要拥有一台电脑，且可以多端同步游戏。JE必须使用电脑上的Java版，而BE则可以跨苹果安卓和Windows Mobile手机，与Xbox 360、Switch、PS4等专用游戏设备，及Windows 10的电脑联机。</p>
+<p><strong>值得注意的是，本文对于JE/BE的服务器搭建教程均不包括Mojang官方的Realms。Realms同样分JE与BE版，且同样不能联机BE与JE。Realms是Mojang官方的付费服务，可以在官网订购。据笔者了解，其价格相较自行搭建服务器更为昂贵（约60元每月），并且在国内的连接并不十分稳定，且无法添加mod及插件，故并不推荐。此外，无论是JE还是BE的Realms均要求参与者全部是正版用户。一定程度上，笔者认为这也决定了国内Realms的小众。</strong></p>
+<h2 id="Java-Edition"><a href="#Java-Edition" class="headerlink" title="Java Edition"></a>Java Edition</h2><p>JE的服务端有许多种。我们先从官方的说起</p>
+<h3 id="Official-JE-Server"><a href="#Official-JE-Server" class="headerlink" title="Official JE Server"></a>Official JE Server</h3><p>当每一个JE的新版本发布时（一般仅限正式版而不包括每周快照），Mojang会在官网同步发布服务端的jar文件，可以在下面的地址下载：<a target="_blank" rel="noopener" href="https://www.minecraft.net/download/server">https://www.minecraft.net/download/server</a></p>
+<p>此页面会在每一个正式版发布时更新，从而在笔者写下本文时仅能下载1.16.5版本的服务器jar文件。不过，您可以在官方启动器中“添加版本”处选择您需要的版本，并点击选择框右上角的下载服务端按钮，如下：</p>
+<p>/<em>待补图</em>/</p>
+<p>此外，您也可以在<a target="_blank" rel="noopener" href="https://mcversions.net/">MCVersions.net</a>搜索您需要的版本，并点击下方的下载按钮下载。以1.7.10为例：</p>
+<p><img src="/2021/building-a-mc-server/mcversions1.png" srcset="/img/loading.gif" lazyload alt="MCVersions.net"></p>
+<p><img src="/2021/building-a-mc-server/mcversions2.png" srcset="/img/loading.gif" lazyload alt="MCVersions.net"></p>
+<p>如上图所示，点击Download Server按钮，即可下载选定版本的服务器jar。值得赞赏的是，该下载链接来自Mojang官网，从而您无需有任何顾虑。</p>
+<p>下载jar文件后，您需要在安装了Java的情况下（检验java是否安装的指令：<code>java -version</code>），前往下载的jar文件存放的目录中，并执行指令：<code>java -jar server.jar</code>（注：若下载的文件名不是<code>server.jar</code>，建议先重命名），此后您会看到jar文件存放的目录（下称<em><strong>服务器目录</strong></em>）中看到<code>eula.txt</code>等文件被生成。</p>
+<p>打开<code>eula.txt</code>文件，将其中的<code>eula=false</code>改为<code>eula=true</code>后再次使用上面的指令即可启动服务器。之所以Mojang要设置此选项（或者可以说是障碍），就是为了确保每一位开服的用户都遵守其最终用户许可协议（End-User License Agreement，缩写EULA）。</p>
+<p>正常情况下，如下图所示（笔者用的是1.12.2的服务端）：</p>
+<p><img src="/2021/building-a-mc-server/server1.png" srcset="/img/loading.gif" lazyload alt="MCVersions.net"></p>
+<p>JE版所有的服务器无外乎是使用了jvm技术，即Java Virtual Machine，通俗理解就是Java的一个小“虚拟机”。无论JE版的服务器还是客户端其实都是利用了该技术。由此，可能部分较老旧的电脑即使安装了Java也无法正常启动该功能。笔者曾使用的于2015年购买的低配联想笔记本可以正常使用该功能。</p>
+<p>启动后的图形化用户界面（又称GUI，Grafical User Interface）如图所示：</p>
+<p><img src="/2021/building-a-mc-server/server2.png" srcset="/img/loading.gif" lazyload alt="MCVersions.net"></p>
+<p>其中左上角的Stats显示了服务器对运行服务器的电脑（或云服务器等）的内存、CPU占用情况及服务器响应情况，左下角是在线玩家列表（示例图中因没有玩家在线，列表为空），右侧是服务器运行日志、聊天记录等。您可以在右下角的输入框中输入指令，或以服务器Server身份参与聊天（使用命令<code>say xxx</code>），命令前既可以打<code>/</code>号也可以不打，以下几种用法都是正确且可以正常执行的：</p>
+<figure class="highlight jboss-cli"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs jboss-cli">say 一句话<br><span class="hljs-string">/say</span> 另一句话<br>weather rain<br><span class="hljs-string">/weather</span> <span class="hljs-keyword">clear</span><br></code></pre></div></td></tr></table></figure>
+
+<p>（注：一般情况下为方便服务器管理人员在自己的客户端中直接执行指令，建议执行命令<code>op xxx</code>（xxx为服主或管理人员用户名）后直接在客户端输入<code>/</code>后执行指令）</p>
+<p>现在请先执行<code>stop</code>以关闭服务器。注意该指令可能只能在服务端执行。</p>
+<p>执行后，服务端将自动执行系列操作：停止服务器（此后在线玩家将被“失去连接”，并且在玩家的多人游戏界面上服务器将“无法被找到”，新玩家将无法加入服务器）、保存当前玩家信息、保存地图，关服（此后服务端的服务器进程将被彻底关闭，前文提及的服务器GUI也会关闭）</p>
+<p>现在，您可以根据系统撰写脚本<code>start.bat</code>/<code>start.cmd</code>（Windows下）或<code>start.sh</code>（Linux下），内容同上：</p>
+<figure class="highlight mipsasm"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs mipsasm"><span class="hljs-keyword">java </span>-<span class="hljs-keyword">jar </span>server.<span class="hljs-keyword">jar</span><br></code></pre></div></td></tr></table></figure>
+
+<p>同时，真正进行服务器联机时，为了服务器发挥更好的性能，您可以加入如下选项（可选）：</p>
+<ol>
+<li><code>-nogui</code>，该项可以不启动服务器GUI画面，从而节省服务器内存</li>
+<li><code>-Xms</code>，该项可以定义服务器刚刚启动时占用的内存，建议在中大型服务器中与最大内存设为相同值以加快服务器启动，对于普通用户建议<code>-Xms512M</code>（512MB）或<code>-Xms1G</code>（1GB）就够了。该项不会对长时间服务器运行有性能影响，故也可以不设置</li>
+<li><code>-Xmx</code>，该项可以定义服务器占用的最大内存，一般来说云服务器就直接开最大内存吧，反正收费一样；家用电脑开服的自己协调一下，一般来说1~2GB就够了</li>
+</ol>
+<p>另外，家用电脑开服一般需要内网映射，如果要用同一台电脑上客户端（而且不加mod/插件的）的建议不要用上面的jar文件开服，而是用LanServerProperties的mod直接用客户端开局域网联机，再内网映射。该模组可以解决局域网联机端口不固定（也可以使用<code>/publish xxx</code>来固定在<code>xxx</code>端口开服，如<code>/publish 25565</code>）、不允许非正版用户等设定，会在后面介绍。</p>
+<p>待更，抽时间继续更%</p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/%E6%95%99%E7%A8%8B/">教程</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/Minecraft/">Minecraft</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-nc-nd/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-NC-ND 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2021/test-on-encryption/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">文章加密测试</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2021/going-viral/">
+                        <span class="hidden-mobile">如何快速在中国互联网走红</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
+  <div id="waline"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#waline', function() {
+      Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/@waline/client@1.3.3/dist/Waline.min.js', function() {
+        var options = Object.assign(
+          {"serverURL":"https://ender-blog.vercel.app/","placeholder":"欢迎前往工单页举报违规评论，感谢您对本站工作的支持❤","path":"window.location.pathname","avatar":"identicon","meta":["nick","mail","link"],"pageSize":10,"lang":"zh-CN","highlight":true,"avatarCDN":"https://sdn.geekzu.org/avatar/","avatarForce":false,"requiredFields":[],"emojiCDN":null,"emojiMaps":null,"anonymous":null,"dark":"html[data-user-color-scheme=\"dark\"]","requiredMeta":["nick","mail"],"emoji":["https://cdn.jsdelivr.net/gh/walinejs/emojis@1.0.0/qq","https://cdn.jsdelivr.net/gh/walinejs/emojis@1.0.0/alus","https://cdn.jsdelivr.net/gh/walinejs/emojis@1.0.0/bilibili","https://cdn.jsdelivr.net/gh/walinejs/emojis@1.0.0/tw-emoji"],"login":"enable","copyright":true,"locale":[{"admin":"Commander"}]},
+          {
+            el: '#waline',
+            path: window.location.pathname
+          }
+        )
+        new Waline(options);
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+    Copyright 2021 <a href="https://github.com/code004Accepted" target="_blank" rel="nofollow noopener">code004Accepted</a>.<br/>This site and all its sub-content is licensed under a <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/deed" target="_blank" rel="nofollow noopener">CC BY-NC-ND 4.0 International License</a>. 
+  </div>
+  
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- LeanCloud 统计PV -->
+        <span id="leancloud-site-pv-container" style="display: none">
+            总访问量 
+            <span id="leancloud-site-pv"></span>
+             |
+          </span>
+      
+      
+        <!-- LeanCloud 统计UV -->
+        <span id="leancloud-site-uv-container" style="display: none">
+            总访客数 
+            <span id="leancloud-site-uv"></span>
+             
+          </span>
+      
+
+    
+  </div>
+
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":true,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.3/dist/tocbot.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.1/anchor.min.js" ></script>
+
+
+
+  <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.8/dist/clipboard.min.js" ></script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+  <script defer src="/js/leancloud.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>
